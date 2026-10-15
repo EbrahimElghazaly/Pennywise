@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise — 404 Page Not Found</title>
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <style>
+    .not-found-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background-color: var(--global-background);
+      text-align: center;
+    }
+    .not-found-card {
+      background-color: #FFFFFF;
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    [data-theme="dark"] .not-found-card {
+      background-color: var(--card-background);
+      border-color: var(--border-color);
+    }
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+    }
+    .illustration-wrapper {
+      width: 180px;
+      height: 150px;
+      margin-bottom: 1.5rem;
+    }
+    .not-found-code {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .not-found-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .not-found-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 360px;
+    }
+    .not-found-actions {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body class="not-found-page">
+
+  <div class="not-found-card">
+    <div class="brand-header">
+      <img src="/assets/icons/logo.svg" alt="Pennywise Logo" width="26" height="26">
+      <span>Pennywise</span>
+    </div>
+
+    <div class="illustration-wrapper">
+      <img src="/assets/images/404-illustration.svg" alt="404 Page Not Found" width="180" height="150">
+    </div>
+
+    <div class="not-found-code">404</div>
+    <h1 class="not-found-title">Page Not Found</h1>
+    <p class="not-found-desc">
+      The page you're looking for doesn't exist or has been moved.
+    </p>
+
+    <div class="not-found-actions">
+      <a href="/dashboard.html" class="btn btn-primary btn-pill">Back to Dashboard</a>
+      <a href="/" class="btn btn-secondary btn-pill">Return Home</a>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise — Dashboard</title>
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar Container -->
+    <aside id="sidebarContainer" class="app-sidebar"></aside>
+
+    <!-- Main Container -->
+    <div class="app-main">
+      <!-- Top Header -->
+      <header id="headerContainer" class="app-header"></header>
+
+      <!-- Content Area -->
+      <main class="app-content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Welcome back, <span id="welcomeUserName">Ahmed</span>! &#128075;</h1>
+            <p class="page-subtitle">Here's your financial overview.</p>
+          </div>
+          <div class="dashboard-header-right">
+            <div class="period-select-badge">
+              <span id="dashboardPeriod">Current month</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Top Metric Cards -->
+        <div class="stat-cards-grid">
+          <!-- Total Income -->
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Income</span>
+              <span class="stat-value" id="totalIncomeVal">0 EGP</span>
+              <span class="stat-delta positive" id="incomeDelta">+12% vs last month</span>
+            </div>
+          </div>
+
+          <!-- Total Expenses -->
+          <div class="stat-card">
+            <div class="stat-icon red">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Expenses</span>
+              <span class="stat-value" id="totalExpensesVal">0 EGP</span>
+              <span class="stat-delta" id="expenseDelta" style="color:var(--text-secondary);">8% vs last month</span>
+            </div>
+          </div>
+
+          <!-- Available Balance -->
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Available Balance</span>
+              <span class="stat-value" id="availableBalanceVal">0 EGP</span>
+              <span class="stat-delta positive" id="balanceDelta">+15% vs last month</span>
+            </div>
+          </div>
+
+          <!-- Savings Goals -->
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Savings Goals</span>
+              <span class="stat-value" id="savingsGoalVal">0% saved</span>
+              <span class="stat-delta" id="savingsGoalSub" style="color:var(--text-secondary);">0 of 0 goals</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Grid (3 Charts) -->
+        <div class="charts-grid">
+          <!-- Income vs Expenses -->
+          <div class="chart-card chart-card-lg">
+            <div class="chart-card-header">
+              <h3 class="chart-title">Income vs Expenses</h3>
+            </div>
+            <div class="chart-container" id="incomeExpensesChart"></div>
+          </div>
+
+          <!-- Expenses by Category -->
+          <div class="chart-card chart-card-md">
+            <div class="chart-card-header">
+              <h3 class="chart-title">Expenses by Category</h3>
+            </div>
+            <div class="donut-wrapper">
+              <div class="donut-svg-container" id="expensesDonutChart"></div>
+              <div class="donut-legend" id="donutLegend"></div>
+            </div>
+          </div>
+
+          <!-- Spending Trend -->
+          <div class="chart-card chart-card-sm">
+            <div class="chart-card-header">
+              <h3 class="chart-title">Spending Trend</h3>
+            </div>
+            <div class="chart-container" id="spendingTrendChart"></div>
+          </div>
+        </div>
+
+        <!-- Bottom Row (Recent Transactions + Budget Overview) -->
+        <div class="dashboard-bottom-grid">
+          <!-- Recent Transactions Card -->
+          <div class="recent-transactions-card">
+            <div class="card-header-action">
+              <h3 class="card-title" style="margin-bottom:0;">Recent Transactions</h3>
+              <a href="/transactions.html" class="link-action">View All</a>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th style="text-align:right;">Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="recentTransactionsBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Budget Overview Card -->
+          <div class="budget-overview-card">
+            <div class="card-header-action">
+              <h3 class="card-title" style="margin-bottom:0;">Budget Overview</h3>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-secondary); text-transform:uppercase; margin-bottom:0.25rem;">Monthly Budget</div>
+            <div class="budget-overview-amount" id="budgetOverviewLimit">0 EGP</div>
+
+            <div class="budget-overview-progress">
+              <div class="banner-progress-bar">
+                <div class="banner-progress-fill" id="budgetOverviewFill" style="width: 0%;"></div>
+              </div>
+              <div style="display:flex; justify-content:flex-end; font-size:0.8rem; font-weight:700; margin-top:0.35rem;" id="budgetOverviewPct">0%</div>
+            </div>
+
+            <div class="budget-overview-stats">
+              <div>
+                <div>Spent</div>
+                <div class="budget-overview-stat-val" id="budgetOverviewSpent">0 EGP</div>
+              </div>
+              <div style="text-align:right;">
+                <div>Remaining</div>
+                <div class="budget-overview-stat-val" id="budgetOverviewRemaining" style="color:var(--primary-green);">0 EGP</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/navigation.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Dashboard.init();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: pennywise
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeploy: false
+    healthCheckPath: /healthz
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: PORT
+        value: "10000"
+      - key: PENNYWISE_DB_PROVIDER
+        value: postgres
+      - key: PENNYWISE_POSTGRES_CONNECTION_STRING
+        sync: false

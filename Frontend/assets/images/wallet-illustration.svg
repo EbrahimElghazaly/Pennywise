@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" width="100%" height="100%" fill="none">
+  <defs>
+    <radialGradient id="mintGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C2F0DE" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#E8F8F0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="walletGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3A64D8"/>
+      <stop offset="100%" stop-color="#1E3E9E"/>
+    </linearGradient>
+    <linearGradient id="flapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D52BD"/>
+      <stop offset="100%" stop-color="#183383"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#165E34"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <linearGradient id="coinGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="coinGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#1E3A8A" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Background Soft Mint Glow -->
+  <circle cx="160" cy="140" r="115" fill="url(#mintGlow)"/>
+
+  <!-- Growing Plant / Leaves -->
+  <path d="M 170 120 C 170 85 200 65 215 65 C 215 95 185 115 170 120 Z" fill="url(#leafGrad)"/>
+  <path d="M 160 125 C 150 95 125 80 110 85 C 115 110 145 122 160 125 Z" fill="url(#leafGrad)"/>
+  <path d="M 165 125 Q 170 100 178 78" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Main Wallet Body -->
+  <rect x="75" y="115" width="170" height="110" rx="20" fill="url(#walletGrad)" filter="url(#softShadow)"/>
+  
+  <!-- Wallet Stitching Accent -->
+  <rect x="83" y="123" width="154" height="94" rx="14" stroke="#5C85EC" stroke-width="2" stroke-dasharray="5 4" fill="none" opacity="0.6"/>
+
+  <!-- Wallet Flap & Clasp -->
+  <path d="M 175 145 L 245 145 C 250 145 254 149 254 154 L 254 186 C 254 191 250 195 245 195 L 175 195 Z" fill="url(#flapGrad)"/>
+  <circle cx="230" cy="170" r="7" fill="#E2E8F0"/>
+  <circle cx="230" cy="170" r="4" fill="#3B82F6"/>
+
+  <!-- Gold Coins on bottom-left -->
+  <!-- Coin 1 (Back) -->
+  <circle cx="65" cy="195" r="22" fill="url(#coinGrad2)" filter="url(#softShadow)"/>
+  <circle cx="65" cy="195" r="18" stroke="#FDE68A" stroke-width="2" fill="none"/>
+  <text x="65" y="202" font-family="system-ui, sans-serif" font-weight="bold" font-size="20" fill="#92400E" text-anchor="middle">£</text>
+
+  <!-- Coin 2 (Front) -->
+  <circle cx="85" cy="218" r="18" fill="url(#coinGrad1)" filter="url(#softShadow)"/>
+  <circle cx="85" cy="218" r="14" stroke="#FEF3C7" stroke-width="1.5" fill="none"/>
+  <text x="85" y="224" font-family="system-ui, sans-serif" font-weight="bold" font-size="16" fill="#B45309" text-anchor="middle">£</text>
+
+  <!-- Sparkles / Twinkles -->
+  <path d="M 265 130 L 268 138 L 276 141 L 268 144 L 265 152 L 262 144 L 254 141 L 262 138 Z" fill="#34D399"/>
+  <circle cx="95" cy="100" r="3" fill="#6EE7B7"/>
+</svg>

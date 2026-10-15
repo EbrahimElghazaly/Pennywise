@@ -1,0 +1,22 @@
+## .NET build artifacts
+bin/
+obj/
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+
+## SQLite Database
+*.db
+*.db-shm
+*.db-wal
+
+## OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+## Zip output
+Pennywise-Complete-Source.zip
+dist/

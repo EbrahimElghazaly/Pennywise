@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise — Categories</title>
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/categories.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside id="sidebarContainer" class="app-sidebar"></aside>
+
+    <div class="app-main">
+      <header id="headerContainer" class="app-header"></header>
+
+      <main class="app-content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Categories</h1>
+            <p class="page-subtitle">Manage your income and expense categories.</p>
+          </div>
+          <button class="btn btn-primary btn-pill" id="openAddCategoryBtn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            <span>+ Add Category</span>
+          </button>
+        </div>
+
+        <!-- Categories Tabs -->
+        <div class="category-tabs">
+          <button class="category-tab-btn active" id="tabExpenseBtn">Expense Categories</button>
+          <button class="category-tab-btn" id="tabIncomeBtn">Income Categories</button>
+        </div>
+
+        <!-- Category Cards Grid -->
+        <div class="categories-grid" id="categoriesGrid"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create/Edit Category Modal -->
+  <div class="modal-backdrop" id="categoryModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="categoryModalTitle">Add Category</h3>
+        <button class="modal-close" id="closeCategoryModalBtn">&times;</button>
+      </div>
+      <form id="categoryForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="catModalName">Category Name</label>
+            <input type="text" id="catModalName" class="form-control" placeholder="e.g. Groceries or Freelance" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="catModalType">Type</label>
+            <select id="catModalType" class="form-control">
+              <option value="expense">Expense</option>
+              <option value="income">Income</option>
+            </select>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label class="form-label" for="catModalIcon">Icon</label>
+              <select id="catModalIcon" class="form-control">
+                <option value="tag">Tag</option>
+                <option value="food">Food</option>
+                <option value="car">Transport</option>
+                <option value="shopping">Shopping</option>
+                <option value="receipt">Bills</option>
+                <option value="health">Healthcare</option>
+                <option value="education">Education</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="salary">Salary</option>
+                <option value="freelance">Freelancing</option>
+                <option value="investment">Investments</option>
+                <option value="wallet">Wallet</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="catModalColor">Color</label>
+              <input type="color" id="catModalColor" class="form-control" value="#165E34" style="height:44px; padding:0.25rem;">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancelCategoryModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveCategoryBtn">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/navigation.js"></script>
+  <script src="/js/categories.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Categories.init();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+/* ==========================================================================
+   BUDGETS PAGE STYLES
+   ========================================================================== */
+
+/* Monthly Budget Overview Banner */
+.budget-overview-banner {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2.25rem;
+}
+
+[data-theme="dark"] .budget-overview-banner {
+  background-color: var(--card-background);
+  border-color: var(--border-color);
+}
+
+.budget-banner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.budget-banner-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.budget-banner-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.budget-metric-label {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.budget-metric-value {
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.25rem;
+}
+
+.budget-metric-value.spent {
+  color: var(--text-primary);
+}
+
+.budget-metric-value.remaining {
+  color: var(--primary-green);
+}
+
+.budget-metric-value.exceeded {
+  color: var(--danger);
+}
+
+.banner-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.banner-progress-bar {
+  flex-grow: 1;
+  height: 12px;
+  background-color: var(--border-color);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.banner-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--primary-green) 0%, var(--primary-green-bright) 100%);
+  transition: width 0.4s ease;
+}
+
+.banner-progress-fill.exceeded {
+  background: var(--danger);
+}
+
+.banner-progress-pct {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  min-width: 45px;
+  text-align: right;
+}
+
+/* Budget Categories Grid */
+.budget-grid-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.budget-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.budget-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+[data-theme="dark"] .budget-card {
+  background-color: var(--card-background);
+  border-color: var(--border-color);
+}
+
+.budget-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.budget-card.exceeded {
+  border-color: rgba(225, 29, 72, 0.4);
+}
+
+.budget-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.budget-card-category {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.budget-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.budget-card-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.budget-card-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.budget-card-amounts {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.budget-card-limit {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.budget-card-spent-stats {
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.budget-card-spent-label {
+  color: var(--text-secondary);
+}
+
+.budget-card-spent-val {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.budget-card-remaining {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.85rem;
+}
+
+.budget-card-remaining span {
+  font-weight: 600;
+}
+
+.budget-card-remaining.exceeded span {
+  color: var(--danger);
+}
+
+.budget-card-remaining.safe span {
+  color: var(--primary-green);
+}
+
+.budget-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.budget-card-footer.exceeded {
+  color: var(--danger);
+}

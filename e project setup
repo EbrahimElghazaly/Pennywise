@@ -1,0 +1,28 @@
+Backend/Repositories/TransactionRepository.cs:74: trailing whitespace.
+[32m+[m[32m                SELECT[m[41m [m
+Backend/Repositories/TransactionRepository.cs:261: trailing whitespace.
+[32m+[m[32m            SELECT[m[41m [m
+Backend/Services/AnalyticsService.cs:36: trailing whitespace.
+[32m+[m[32m                SELECT[m[41m [m
+Backend/Services/AnalyticsService.cs:137: trailing whitespace.
+[32m+[m[32m                SELECT[m[41m [m
+Backend/Services/AnalyticsService.cs:220: trailing whitespace.
+[32m+[m[32m                SELECT[m[41m [m
+Backend/Services/AnalyticsService.cs:310: trailing whitespace.
+[32m+[m[32m                SELECT[m[41m [m
+Frontend/assets/images/404-illustration.svg:23: trailing whitespace.
+[32m+[m[41m  [m
+Frontend/assets/images/hero-dashboard.svg:96: trailing whitespace.
+[32m+[m[41m    [m
+Frontend/assets/images/hero-dashboard.svg:101: trailing whitespace.
+[32m+[m[41m    [m
+Frontend/assets/images/hero-dashboard.svg:109: trailing whitespace.
+[32m+[m[41m    [m
+Frontend/assets/images/wallet-illustration.svg:42: trailing whitespace.
+[32m+[m[41m  [m
+Frontend/css/variables.css:15: trailing whitespace.
+[32m+[m[41m  [m
+Frontend/css/variables.css:18: trailing whitespace.
+[32m+[m[41m  [m
+Frontend/js/dashboard.js:261: trailing whitespace.
+[32m+[m[41m        [m

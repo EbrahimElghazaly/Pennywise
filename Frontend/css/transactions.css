@@ -1,0 +1,198 @@
+/* ==========================================================================
+   TRANSACTIONS PAGE STYLES
+   ========================================================================== */
+
+.filter-toolbar {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+[data-theme="dark"] .filter-toolbar {
+  background-color: var(--card-background);
+  border-color: var(--border-color);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.filter-search {
+  position: relative;
+  min-width: 220px;
+  flex-grow: 1;
+  max-width: 320px;
+}
+
+.filter-search input {
+  padding-left: 2.25rem;
+  height: 38px;
+  font-size: 0.875rem;
+}
+
+.filter-search svg {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  fill: var(--text-muted);
+}
+
+.filter-select {
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--input-border);
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  border-color: var(--primary-green);
+}
+
+/* Transactions Table Card */
+.transactions-table-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .transactions-table-card {
+  background-color: var(--card-background);
+  border-color: var(--border-color);
+}
+
+.tx-amount {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tx-amount.income {
+  color: var(--success);
+}
+
+.tx-amount.expense {
+  color: var(--danger);
+}
+
+.tx-category-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tx-cat-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+}
+
+.tx-cat-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.action-btn:hover {
+  background-color: var(--card-background);
+  color: var(--text-primary);
+}
+
+.action-btn.delete:hover {
+  background-color: var(--danger-bg);
+  color: var(--danger);
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.page-btn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  background-color: #FFFFFF;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+
+[data-theme="dark"] .page-btn {
+  background-color: var(--sidebar-bg);
+  border-color: var(--border-color);
+}
+
+.page-btn:hover {
+  background-color: var(--card-background);
+}
+
+.page-btn.active {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

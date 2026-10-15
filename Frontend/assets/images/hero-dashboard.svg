@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 380" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#0A0F1D"/>
+    </linearGradient>
+    <linearGradient id="monitorFrame" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="greenBar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="blueBar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="purpleBar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <filter id="monitorGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#10B981" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Potted Plants Left -->
+  <path d="M 60 260 C 40 220 70 190 85 190 C 85 220 70 250 60 260 Z" fill="#10B981"/>
+  <path d="M 70 260 C 95 230 115 210 120 230 C 100 245 80 258 70 260 Z" fill="#059669"/>
+  <path d="M 68 260 L 68 285 L 82 285 L 82 260 Z" fill="#475569"/>
+
+  <!-- Desktop Monitor Stand -->
+  <ellipse cx="230" cy="330" rx="65" ry="12" fill="#1E293B"/>
+  <path d="M 220 260 L 240 260 L 235 328 L 225 328 Z" fill="#334155"/>
+
+  <!-- Desktop Monitor Outer Body -->
+  <rect x="50" y="40" width="360" height="230" rx="14" fill="url(#monitorFrame)" stroke="#334155" stroke-width="3" filter="url(#monitorGlow)"/>
+
+  <!-- Monitor Screen Display -->
+  <rect x="58" y="48" width="344" height="214" rx="8" fill="url(#screenGrad)"/>
+
+  <!-- Screen Content: Top Bar -->
+  <rect x="66" y="56" width="328" height="20" rx="4" fill="#1E293B"/>
+  <circle cx="78" cy="66" r="3.5" fill="#EF4444"/>
+  <circle cx="90" cy="66" r="3.5" fill="#F59E0B"/>
+  <circle cx="102" cy="66" r="3.5" fill="#10B981"/>
+  <rect x="130" y="62" width="100" height="8" rx="4" fill="#334155"/>
+
+  <!-- Screen Content: 3 Metric Cards -->
+  <rect x="66" y="86" width="102" height="42" rx="6" fill="#131E35" stroke="#1E293B"/>
+  <rect x="74" y="94" width="40" height="6" rx="3" fill="#64748B"/>
+  <rect x="74" y="106" width="60" height="12" rx="3" fill="#10B981" opacity="0.9"/>
+
+  <rect x="178" y="86" width="102" height="42" rx="6" fill="#131E35" stroke="#1E293B"/>
+  <rect x="186" y="94" width="40" height="6" rx="3" fill="#64748B"/>
+  <rect x="186" y="106" width="55" height="12" rx="3" fill="#F43F5E" opacity="0.9"/>
+
+  <rect x="290" y="86" width="104" height="42" rx="6" fill="#131E35" stroke="#1E293B"/>
+  <rect x="298" y="94" width="40" height="6" rx="3" fill="#64748B"/>
+  <rect x="298" y="106" width="50" height="12" rx="3" fill="#60A5FA" opacity="0.9"/>
+
+  <!-- Screen Content: Charts Area -->
+  <rect x="66" y="138" width="200" height="114" rx="6" fill="#131E35" stroke="#1E293B"/>
+  <rect x="76" y="146" width="70" height="7" rx="3" fill="#94A3B8"/>
+  <!-- Chart Bars -->
+  <rect x="85" y="210" width="14" height="30" rx="3" fill="url(#blueBar)"/>
+  <rect x="103" y="185" width="14" height="55" rx="3" fill="url(#greenBar)"/>
+  <rect x="127" y="200" width="14" height="40" rx="3" fill="url(#blueBar)"/>
+  <rect x="145" y="170" width="14" height="70" rx="3" fill="url(#greenBar)"/>
+  <rect x="169" y="195" width="14" height="45" rx="3" fill="url(#blueBar)"/>
+  <rect x="187" y="160" width="14" height="80" rx="3" fill="url(#greenBar)"/>
+  <rect x="211" y="205" width="14" height="35" rx="3" fill="url(#blueBar)"/>
+  <rect x="229" y="165" width="14" height="75" rx="3" fill="url(#greenBar)"/>
+
+  <!-- Donut Chart Miniature -->
+  <rect x="274" y="138" width="120" height="114" rx="6" fill="#131E35" stroke="#1E293B"/>
+  <circle cx="334" cy="195" r="30" stroke="#1E293B" stroke-width="12" fill="none"/>
+  <circle cx="334" cy="195" r="30" stroke="#10B981" stroke-width="12" stroke-dasharray="80 110" stroke-dashoffset="0" fill="none"/>
+  <circle cx="334" cy="195" r="30" stroke="#60A5FA" stroke-width="12" stroke-dasharray="45 145" stroke-dashoffset="-80" fill="none"/>
+  <circle cx="334" cy="195" r="30" stroke="#F59E0B" stroke-width="12" stroke-dasharray="35 155" stroke-dashoffset="-125" fill="none"/>
+
+  <!-- Mobile Phone Mockup Overlay on Right -->
+  <g transform="translate(385, 120)">
+    <!-- Shadow -->
+    <rect x="0" y="0" width="115" height="215" rx="20" fill="#0A0F1D" stroke="#334155" stroke-width="3" filter="url(#monitorGlow)"/>
+    <!-- Phone Screen -->
+    <rect x="6" y="6" width="103" height="203" rx="16" fill="#0F172A"/>
+    <!-- Phone Notch -->
+    <rect x="36" y="10" width="43" height="5" rx="2.5" fill="#334155"/>
+    <!-- Phone Content -->
+    <rect x="14" y="25" width="45" height="6" rx="3" fill="#10B981"/>
+    <rect x="14" y="40" width="87" height="35" rx="8" fill="#1E293B"/>
+    <rect x="22" y="48" width="30" height="5" rx="2.5" fill="#64748B"/>
+    <rect x="22" y="58" width="50" height="9" rx="3" fill="#34D399"/>
+    
+    <!-- Phone Mini List -->
+    <rect x="14" y="85" width="87" height="20" rx="5" fill="#131E35"/>
+    <circle cx="24" cy="95" r="5" fill="#10B981"/>
+    <rect x="34" y="92" width="35" height="6" rx="3" fill="#94A3B8"/>
+    
+    <rect x="14" y="112" width="87" height="20" rx="5" fill="#131E35"/>
+    <circle cx="24" cy="122" r="5" fill="#F43F5E"/>
+    <rect x="34" y="119" width="35" height="6" rx="3" fill="#94A3B8"/>
+
+    <rect x="14" y="139" width="87" height="20" rx="5" fill="#131E35"/>
+    <circle cx="24" cy="149" r="5" fill="#60A5FA"/>
+    <rect x="34" y="146" width="35" height="6" rx="3" fill="#94A3B8"/>
+    
+    <!-- Phone Nav Bar -->
+    <rect x="14" y="172" width="87" height="24" rx="8" fill="#1E293B"/>
+    <circle cx="32" cy="184" r="4" fill="#10B981"/>
+    <circle cx="58" cy="184" r="4" fill="#64748B"/>
+    <circle cx="84" cy="184" r="4" fill="#64748B"/>
+  </g>
+
+  <!-- Glowing particles -->
+  <circle cx="480" cy="90" r="4" fill="#10B981" opacity="0.6"/>
+  <circle cx="380" cy="50" r="3" fill="#38BDF8" opacity="0.5"/>
+</svg>

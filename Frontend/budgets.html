@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise — Budgets</title>
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/budgets.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside id="sidebarContainer" class="app-sidebar"></aside>
+
+    <div class="app-main">
+      <header id="headerContainer" class="app-header"></header>
+
+      <main class="app-content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Budgets</h1>
+            <p class="page-subtitle">Set limits, track your spending, and stay on budget.</p>
+          </div>
+          <button class="btn btn-primary btn-pill" id="openCreateBudgetBtn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            <span>+ Create Budget</span>
+          </button>
+        </div>
+
+        <!-- Monthly Budget Overview Banner -->
+        <div class="budget-overview-banner">
+          <div class="budget-banner-header">
+            <h3 class="budget-banner-title">Monthly Budget Overview</h3>
+          </div>
+
+          <div class="budget-banner-metrics">
+            <div>
+              <div class="budget-metric-label">Total Budget</div>
+              <div class="budget-metric-value" id="bannerTotalBudget">0 EGP</div>
+            </div>
+            <div>
+              <div class="budget-metric-label">Spent</div>
+              <div class="budget-metric-value spent" id="bannerTotalSpent">0 EGP</div>
+            </div>
+            <div>
+              <div class="budget-metric-label">Remaining</div>
+              <div class="budget-metric-value remaining" id="bannerRemaining">0 EGP</div>
+            </div>
+          </div>
+
+          <div class="banner-progress-container">
+            <div class="banner-progress-bar">
+              <div class="banner-progress-fill" id="bannerProgressFill" style="width: 0%;"></div>
+            </div>
+            <div class="banner-progress-pct" id="bannerProgressPct">0%</div>
+          </div>
+        </div>
+
+        <!-- Budget Categories Section -->
+        <div>
+          <h2 class="budget-grid-title">Budget Categories</h2>
+          <div class="budget-cards-grid" id="budgetsGrid"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create/Edit Budget Modal -->
+  <div class="modal-backdrop" id="budgetModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="budgetModalTitle">Create Budget</h3>
+        <button class="modal-close" id="closeBudgetModalBtn">&times;</button>
+      </div>
+      <form id="budgetForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="budgetModalCategory">Category</label>
+            <select id="budgetModalCategory" class="form-control" required></select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="budgetModalLimit">Budget Limit</label>
+            <input type="number" step="0.01" id="budgetModalLimit" class="form-control" placeholder="e.g. 2000" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="budgetModalPeriod">Period</label>
+            <select id="budgetModalPeriod" class="form-control">
+              <option value="monthly">Monthly</option>
+              <option value="weekly">Weekly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancelBudgetModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveBudgetBtn">Save Budget</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/navigation.js"></script>
+  <script src="/js/budgets.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Budgets.init();
+    });
+  </script>
+</body>
+</html>

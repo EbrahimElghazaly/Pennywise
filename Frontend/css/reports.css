@@ -1,0 +1,131 @@
+/* ==========================================================================
+   REPORTS & ANALYTICS PAGE STYLES
+   ========================================================================== */
+
+.reports-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.date-range-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-color);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+}
+
+[data-theme="dark"] .date-range-picker {
+  background-color: var(--card-background);
+  border-color: var(--border-color);
+}
+
+.date-range-picker input[type="date"] {
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.reports-chart-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme="dark"] .reports-chart-card {
+  background-color: var(--card-background);
+  border-color: var(--border-color);
+}
+
+.reports-chart-donut {
+  grid-column: span 5;
+}
+
+.reports-chart-bar {
+  grid-column: span 7;
+}
+
+/* Top Spending Category Card */
+.top-category-card {
+  grid-column: span 12;
+  background: linear-gradient(135deg, rgba(22, 94, 52, 0.08) 0%, rgba(126, 136, 239, 0.08) 100%);
+  border: 1px solid rgba(22, 94, 52, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+[data-theme="dark"] .top-category-card {
+  background: linear-gradient(135deg, rgba(22, 94, 52, 0.2) 0%, rgba(126, 136, 239, 0.15) 100%);
+  border-color: rgba(22, 94, 52, 0.4);
+}
+
+.top-cat-info {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.top-cat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  background-color: #FF9800;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.top-cat-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.top-cat-text h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.top-cat-text p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.top-cat-amount {
+  text-align: right;
+}
+
+.top-cat-value {
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--danger);
+}
+
+.top-cat-pct {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}

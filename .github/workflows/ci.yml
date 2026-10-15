@@ -1,0 +1,171 @@
+name: Pennywise CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-integration-test:
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore Backend/Pennywise.csproj
+
+      - name: Build
+        run: dotnet build Backend/Pennywise.csproj --configuration Release --no-restore
+
+      - name: Run integration tests
+        shell: pwsh
+        run: |
+          $env:ASPNETCORE_ENVIRONMENT = "Development"
+          $env:PORT = "5000"
+          $env:PENNYWISE_DB_PATH = Join-Path $env:RUNNER_TEMP "pennywise-ci.db"
+          $env:PENNYWISE_TEST_BASE_URL = "http://localhost:5000"
+          $stdout = Join-Path $env:RUNNER_TEMP "pennywise-server.log"
+          $stderr = Join-Path $env:RUNNER_TEMP "pennywise-server-error.log"
+          function Start-Pennywise {
+            Start-Process dotnet -ArgumentList "Pennywise.dll" -WorkingDirectory "Backend\bin\Release\net10.0" -PassThru -WindowStyle Hidden -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+          }
+          function Wait-ForPennywise($process) {
+            for ($attempt = 0; $attempt -lt 40; $attempt++) {
+              if ($process.HasExited) {
+                throw "Pennywise exited before becoming healthy. $((Get-Content $stderr -Raw))"
+              }
+              try {
+                $response = Invoke-RestMethod -Uri "http://localhost:5000/healthz" -TimeoutSec 2
+                if ($response.status -eq "healthy") { return }
+              } catch {
+                Start-Sleep -Seconds 1
+              }
+            }
+            throw "Pennywise did not become healthy. $((Get-Content $stderr -Raw))"
+          }
+          $server = $null
+          try {
+            $server = Start-Pennywise
+            Wait-ForPennywise $server
+            pwsh -NoProfile -File .\test_suite.ps1
+            if ($LASTEXITCODE -ne 0) {
+              throw "Pennywise integration tests failed with exit code $LASTEXITCODE."
+            }
+            Stop-Process -Id $server.Id
+            if (-not $server.WaitForExit(10000)) {
+              throw "Pennywise did not stop before the persistence restart check."
+            }
+            $server = Start-Pennywise
+            Wait-ForPennywise $server
+            $login = Invoke-RestMethod -Uri "http://localhost:5000/api/auth/login" -Method Post -ContentType "application/json" -Body (@{ email = "ahmed@example.com"; password = "Password123!"; rememberMe = $false } | ConvertTo-Json)
+            $headers = @{ Authorization = "Bearer $($login.token)" }
+            $summary = Invoke-RestMethod -Uri "http://localhost:5000/api/dashboard/summary" -Headers $headers
+            if (-not $summary.success -or $summary.data.totalIncome -le 0) {
+              throw "Persisted financial data was not available after restarting the app."
+            }
+            Write-Host "SQLite persistence verified after application restart."
+          } finally {
+            if ($server -and -not $server.HasExited) {
+              Stop-Process -Id $server.Id
+            }
+          }
+
+  postgres-integration-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: pennywise
+          POSTGRES_USER: pennywise
+          POSTGRES_PASSWORD: pennywise-ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U pennywise -d pennywise"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      ASPNETCORE_ENVIRONMENT: Development
+      PORT: "5100"
+      PENNYWISE_DB_PROVIDER: postgres
+      PENNYWISE_POSTGRES_CONNECTION_STRING: "Host=localhost;Port=5432;Database=pennywise;Username=pennywise;Password=pennywise-ci;SSL Mode=Disable;Timeout=15"
+      PENNYWISE_TEST_BASE_URL: http://localhost:5100
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build
+        run: dotnet build Backend/Pennywise.csproj --configuration Release
+
+      - name: Run PostgreSQL integration tests
+        shell: pwsh
+        run: |
+          $stdout = Join-Path $env:RUNNER_TEMP "pennywise-postgres-server.log"
+          $stderr = Join-Path $env:RUNNER_TEMP "pennywise-postgres-server-error.log"
+          $server = Start-Process dotnet -ArgumentList "Pennywise.dll" -WorkingDirectory "Backend/bin/Release/net10.0" -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+          try {
+            $healthy = $false
+            for ($attempt = 0; $attempt -lt 40; $attempt++) {
+              if ($server.HasExited) {
+                throw "Pennywise exited before becoming healthy. $((Get-Content $stderr -Raw))"
+              }
+              try {
+                $response = Invoke-RestMethod -Uri "http://localhost:5100/healthz" -TimeoutSec 2
+                if ($response.status -eq "healthy") { $healthy = $true; break }
+              } catch {
+                Start-Sleep -Seconds 1
+              }
+            }
+            if (-not $healthy) {
+              throw "Pennywise did not become healthy. $((Get-Content $stderr -Raw))"
+            }
+            pwsh -NoProfile -File .\test_suite.ps1
+            if ($LASTEXITCODE -ne 0) {
+              throw "Pennywise PostgreSQL integration tests failed with exit code $LASTEXITCODE."
+            }
+          } finally {
+            if ($server -and -not $server.HasExited) {
+              Stop-Process -Id $server.Id
+            }
+          }
+
+  deploy-render:
+    runs-on: ubuntu-latest
+    needs:
+      - build-and-integration-test
+      - postgres-integration-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Check Render deploy hook
+        id: deploy-hook
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
+            echo "::warning::Render deployment skipped; add the RENDER_DEPLOY_HOOK_URL Actions secret to enable it."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy to Render
+        if: steps.deploy-hook.outputs.configured == 'true'
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl --fail --silent --show-error --request POST --output /dev/null "$RENDER_DEPLOY_HOOK_URL"

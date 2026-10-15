@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise — Reports & Analytics</title>
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/reports.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside id="sidebarContainer" class="app-sidebar"></aside>
+
+    <div class="app-main">
+      <header id="headerContainer" class="app-header"></header>
+
+      <main class="app-content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Reports & Analytics</h1>
+            <p class="page-subtitle">Get insights into your spending habits and financial health.</p>
+          </div>
+
+          <div class="reports-controls">
+            <div class="date-range-picker">
+              <input type="date" id="reportStartDate">
+              <span>to</span>
+              <input type="date" id="reportEndDate">
+            </div>
+
+            <button class="btn btn-primary btn-pill" id="exportCsvBtn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              <span>Export CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Summary Metric Cards -->
+        <div class="stat-cards-grid">
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Income</span>
+              <span class="stat-value" id="repTotalIncome">0 EGP</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon red">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Expenses</span>
+              <span class="stat-value" id="repTotalExpenses">0 EGP</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Net Cash Flow</span>
+              <span class="stat-value" id="repNetCashFlow">0 EGP</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Average Daily Spending</span>
+              <span class="stat-value" id="repAvgDaily">0 EGP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Grid (Donut & Monthly Comparison) -->
+        <div class="reports-grid">
+          <!-- Expenses by Category -->
+          <div class="reports-chart-card reports-chart-donut">
+            <div class="chart-card-header">
+              <h3 class="chart-title">Expenses by Category</h3>
+            </div>
+            <div class="donut-wrapper">
+              <div class="donut-svg-container" id="reportsDonutSvg"></div>
+              <div class="donut-legend" id="reportsDonutLegend"></div>
+            </div>
+          </div>
+
+          <!-- Monthly Comparison -->
+          <div class="reports-chart-card reports-chart-bar">
+            <div class="chart-card-header">
+              <h3 class="chart-title">Monthly Comparison</h3>
+            </div>
+            <div class="chart-container" id="reportsMonthlyBars"></div>
+          </div>
+
+          <!-- Top Spending Category Highlight -->
+          <div class="top-category-card" id="topCategoryCard" style="display:none;">
+            <div class="top-cat-info">
+              <div class="top-cat-icon" id="topCategoryIcon">
+                <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+              </div>
+              <div class="top-cat-text">
+                <p>Top Spending Category</p>
+                <h3 id="topCategoryName">Food</h3>
+              </div>
+            </div>
+            <div class="top-cat-amount">
+              <div class="top-cat-value" id="topCategoryValue">0 EGP</div>
+              <div class="top-cat-pct" id="topCategoryPct">0% of total expenses</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/navigation.js"></script>
+  <script src="/js/reports.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Reports.init();
+    });
+  </script>
+</body>
+</html>

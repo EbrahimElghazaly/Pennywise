@@ -1,0 +1,141 @@
+/* ==========================================================================
+   RESPONSIVE DESIGN & MOBILE ADAPTATIONS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+  .chart-card-lg,
+  .chart-card-md,
+  .chart-card-sm,
+  .reports-chart-donut,
+  .reports-chart-bar {
+    grid-column: span 12;
+  }
+  .dashboard-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile Sidebar Toggle */
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .app-sidebar {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .app-sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebar-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .app-header {
+    padding: 0 1rem;
+  }
+
+  .header-search {
+    width: 180px;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .app-content {
+    padding: 1.25rem 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Auth Screens */
+  .auth-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .auth-illustration-side {
+    display: none;
+  }
+
+  .auth-card {
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Landing Screen */
+  .landing-navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .landing-nav-links {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-primary,
+  .hero-cta-secondary {
+    width: 100%;
+  }
+
+  /* Budgets */
+  .budget-banner-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Top Category Banner */
+  .top-category-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .top-cat-amount {
+    text-align: left;
+  }
+
+  /* Modals */
+  .modal-dialog {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+}
